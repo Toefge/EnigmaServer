@@ -15,6 +15,7 @@ wss.on('connection', function (ws)
 {
   console.log("client joined.");
   clients.push(ws);
+  ws.Eq
 
   ws.on('message', function (data) 
   {
@@ -30,7 +31,9 @@ wss.on('connection', function (ws)
   ws.on('close', function () 
   {
     console.log("client left.");
-    clients = clients.find(client => !(client.equals(ws)));
+    clients = clients.filter((client) =>{
+      client != ws;
+    })
   });
 });
 
