@@ -1,4 +1,4 @@
-const WebSocket = require('ws')
+const WebSocket = require('wss')
 
 const wss = new WebSocket.Server({ port: 4200 },()=>
 {
