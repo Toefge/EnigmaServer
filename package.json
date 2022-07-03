@@ -1,0 +1,22 @@
+{
+  "name": "enigmaserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Toefge/EnigmaServer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Toefge/EnigmaServer/issues"
+  },
+  "homepage": "https://github.com/Toefge/EnigmaServer#readme",
+  "dependencies": {
+    "socket.io": "^4.5.1"
+  }
+}
