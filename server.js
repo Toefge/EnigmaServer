@@ -22,6 +22,7 @@ wss.on('connection', function (ws)
 
     //TODO Damit nur der andere client informiert wird, muss man hier ungleich dem eigenen Client prüfen!
     clients.forEach(connection => {
+      console.log("send message back: " + data.toString());
       connection.send(data.toString());
     });
   });
