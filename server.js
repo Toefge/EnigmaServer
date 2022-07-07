@@ -41,10 +41,28 @@ wss.on('connection', function (ws) {
 
     ws.on('close', function () {
       console.log("client left.");
+
+      if(clients.length == 2)
+      {
+        clients.forEach(connection => {
+          if(connection != ws)
+          {
+            connection.send("EndEncryption");
+          }
+        });
+      }
+
       clients = clients.filter((client) => {
         client != ws;
       })
     });
+
+    if(clients.length == 2)
+    {
+      clients.forEach(connection => {
+        connection.send("StartEncryption");
+      });
+    }
 
   }
 });
