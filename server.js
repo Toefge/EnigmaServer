@@ -15,6 +15,7 @@ wss.on('connection', function (ws) {
   if (clients.length >= 2) {
 
     ws.close();
+    console.log("Refused connection. Already two clients connected.");
 
   } else {
 
@@ -59,6 +60,7 @@ wss.on('connection', function (ws) {
 
     if(clients.length == 2)
     {
+      console.log("Two clients connected. Send message to start encryption.");
       clients.forEach(connection => {
         connection.send("StartEncryption");
       });
