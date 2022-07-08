@@ -58,6 +58,7 @@ wss.on('connection', function (ws) {
       })
     });
 
+    console.log("Number of connected Clients: " + clients.length);
     if(clients.length == 2)
     {
       console.log("Two clients connected. Send message to start encryption.");
