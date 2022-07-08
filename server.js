@@ -11,7 +11,7 @@ const wss = new WebSocket.Server({ server });
 
 var clients = [];
 
-wss.on('connection', function (ws) {
+wss.on('connection', function connection(ws) {
   if (clients.length >= 2) {
 
     ws.close();
@@ -22,10 +22,9 @@ wss.on('connection', function (ws) {
     console.log("client joined.");
     clients.push(ws);
 
-    ws.on('message', function (data) {
-      console.log("Message revieved from client: " + data.toString());
+    ws.on('message', function message(data) {
+      console.log("Message recieved from client: " + data.toString());
 
-      //TODO Damit nur der andere client informiert wird, muss man hier ungleich dem eigenen Client prüfen!
       clients.forEach(connection => {
         if(connection != ws)
         {
@@ -34,7 +33,7 @@ wss.on('connection', function (ws) {
           
         }else if(clients.length == 1)
         {
-          console.log("send message to back to me: " + data.toString());
+          console.log("send message to same client: " + data.toString());
           connection.send(data.toString());
         }
       });
@@ -48,6 +47,7 @@ wss.on('connection', function (ws) {
         clients.forEach(connection => {
           if(connection != ws)
           {
+            console.log("One of two clients left. End EncryptionState.");
             connection.send("EndEncryption");
           }
         });
@@ -58,12 +58,13 @@ wss.on('connection', function (ws) {
       })
     });
 
-    console.log("Number of connected Clients: " + clients.length);
+    ws.send("Greetings from the server!");
+
     if(clients.length == 2)
     {
       console.log("Two clients connected. Send message to start encryption.");
       clients.forEach(connection => {
-        connection.send("StartEncryption");
+        connection.send('StartEncryption');
       });
     }
 
